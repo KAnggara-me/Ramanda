@@ -18,7 +18,7 @@
   <!-- Custom styles for this template-->
   <link href="<?= base_url('assets/'); ?>css/sb-admin-2.min.css" rel="stylesheet">
   <!-- style untuk chart -->
-  <!-- <script src="<?= base_url('assets/'); ?>vendor/chart.js/Chart.bundle.js"></script> -->
+  <script src="<?= base_url('assets/'); ?>vendor/chart.js/Chart.min.js"></script>
 </head>
 
 <body id="page-top">
