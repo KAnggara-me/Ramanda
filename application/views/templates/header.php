@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="utf-8">
-  <meta http-equiv="refresh" content="10" />
+  <meta http-equiv="refresh" content="30" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -17,6 +17,8 @@
 
   <!-- Custom styles for this template-->
   <link href="<?= base_url('assets/'); ?>css/sb-admin-2.min.css" rel="stylesheet">
+  <!-- Css Untuk Tabel Index admin -->
+  <link href="<?= base_url('assets/'); ?>css/tabel.css" rel="stylesheet">
   <!-- style untuk chart -->
   <script src="<?= base_url('assets/'); ?>vendor/chart.js/Chart.min.js"></script>
 </head>
