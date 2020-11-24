@@ -51,10 +51,10 @@
               <p><?= date('d M y', $t['time']); ?></p>
             </div>
             <div class="table-cell">
-              <p><?= $t['data'] / 100; ?> KM</p>
+              <p><?= $t['data'] / 7050; ?> KM</p>
             </div>
             <div class="table-cell last-cell">
-              <p><?= $t['total'] / 100; ?> KM</p>
+              <p><?= $t['total'] / 7050; ?> KM</p>
             </div>
           </div>
           <?php $i++; ?>
