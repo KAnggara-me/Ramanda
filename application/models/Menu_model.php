@@ -23,4 +23,52 @@ class Menu_model extends CI_Model
       return false;
     }
   }
+
+  function DWarning()
+  {
+    $this->db->select_max('warning');
+    $this->db->from('data');
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+      return $query->row_array();
+    } else {
+      return false;
+    }
+  }
+
+  function DLimit()
+  {
+    $this->db->select_max('Dlimit');
+    $this->db->from('data');
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+      return $query->row_array();
+    } else {
+      return false;
+    }
+  }
+
+  function time()
+  {
+    $this->db->select_max('time');
+    $this->db->from('data');
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+      return $query->row_array();
+    } else {
+      return false;
+    }
+  }
+
+  function update()
+  {
+    $this->db->select_max('Dupdate');
+    $this->db->from('data');
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+      return $query->row_array();
+    } else {
+      return false;
+    }
+  }
 }
