@@ -101,7 +101,7 @@
             borderWidth: 2,
             data: [
               <?php foreach ($obs as $t) : ?>
-                <?= '"' . $t['data'] / 7050 . '",'; ?>
+                <?= '"' . $t['data'] / 3650 . '",'; ?>
               <?php endforeach; ?>
             ],
           },
@@ -121,7 +121,7 @@
             borderWidth: 1,
             data: [
               <?php foreach ($obs as $t) : ?>
-                <?= '"' . $t['total'] / 7050 . '",'; ?>
+                <?= '"' . $t['total'] / 3650 . '",'; ?>
               <?php endforeach; ?>
             ],
           },
