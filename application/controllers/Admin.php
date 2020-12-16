@@ -13,6 +13,7 @@ class Admin extends CI_Controller
   {
     $data['title'] = 'Dashboard';
     $data['obs'] = $this->db->get('counter')->result_array();
+    $data['tobs'] = $this->db->order_by('id', 'DESC')->get('counter')->result_array();
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
     $this->load->view('templates/header', $data);
@@ -106,6 +107,36 @@ class Admin extends CI_Controller
 
       $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Config Updated!</div>');
       redirect('admin/config');
+    }
+  }
+
+  public function reset()
+  {
+    $data['title'] = 'Configuration';
+    $this->load->model('Menu_model', 'ambil');
+    $data['sisa'] = $this->ambil->ambilMax();
+    $data['hari'] = $this->ambil->sisaHari();
+    $data['harimin'] = $this->ambil->hariMin();
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+    $this->form_validation->set_rules('warning', 'Warning', 'required|trim');
+
+    if ($this->form_validation->run() == false) {
+      $this->load->view('templates/header', $data);
+      $this->load->view('templates/sidebar', $data);
+      $this->load->view('templates/topbar', $data);
+      $this->load->view('admin/reset', $data);
+      $this->load->view('templates/footer');
+    } else {
+      $data = array(
+        'data' => 0,
+        'total' => 0,
+        'time' => time()
+      );
+      $this->db->empty_table('counter');
+      $this->db->insert('counter', $data);
+      $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been Reset!</div>');
+      redirect('admin/reset');
     }
   }
 }
