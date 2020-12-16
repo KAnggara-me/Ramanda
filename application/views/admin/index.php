@@ -39,7 +39,7 @@
           </div>
         </div>
         <?php $i = 1; ?>
-        <?php foreach ($obs as $t) : ?>
+        <?php foreach ($tobs as $t) : ?>
           <div class="table-row">
             <div class="table-cell first-cell">
               <p><?= $i; ?></p>
@@ -51,10 +51,10 @@
               <p><?= date('d M y', $t['time']); ?></p>
             </div>
             <div class="table-cell">
-              <p><?= $t['data'] / 7050; ?> KM</p>
+              <p><?= round($t['total'] / 3650); ?> KM</p>
             </div>
             <div class="table-cell last-cell">
-              <p><?= $t['total'] / 7050; ?> KM</p>
+              <p><?= round((7664234 - $t['total']) / 3650); ?> KM</p>
             </div>
           </div>
           <?php $i++; ?>
