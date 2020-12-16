@@ -55,8 +55,9 @@ class Chart extends CI_Controller
 
   public function time()
   {
-    $this->load->model('Menu_model', 'time');
-    $cek = $this->update->update();
-    echo $cek['time'];
+    $this->load->model('Menu_model', 'ambil');
+    $hari = $this->ambil->sisaHari();
+    $harimin = $this->ambil->hariMin();
+    echo round((($harimin['time'] + 5184000) - $hari['time']) / 86400);
   }
 }
