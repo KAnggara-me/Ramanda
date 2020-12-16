@@ -24,6 +24,30 @@ class Menu_model extends CI_Model
     }
   }
 
+  function sisaHari()
+  {
+    $this->db->select_max('time');
+    $this->db->from('counter');
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+      return $query->row_array();
+    } else {
+      return false;
+    }
+  }
+
+  function hariMin()
+  {
+    $this->db->select_min('time');
+    $this->db->from('counter');
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+      return $query->row_array();
+    } else {
+      return false;
+    }
+  }
+
   function DWarning()
   {
     $this->db->select_max('warning');
