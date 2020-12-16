@@ -43,7 +43,7 @@ class Chart extends CI_Controller
   {
     $this->load->model('Menu_model', 'DLimit');
     $cek = $this->DLimit->DLimit();
-    echo $cek['DLimit'];
+    echo $cek['Dlimit'];
   }
 
   public function update()
