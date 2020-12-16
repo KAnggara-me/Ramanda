@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-date_default_timezone_set('Asia/Jakarta');
+date_default_timezone_set('Asia/Jakarta'); //Set Timezone to Jakarta
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ date_default_timezone_set('Asia/Jakarta');
 | a PHP script and you can easily do that on your own.
 |
 */
-// $config['base_url'] = 'http://200.0.0.25/web/';
+// $config['base_url'] = 'http://localhost/web/';
 $config['base_url'] = 'https://osm.kanggara.net/';
 
 /*
