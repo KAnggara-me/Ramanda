@@ -31,4 +31,32 @@ class Chart extends CI_Controller
     $cek = $this->ambil->ambilMax();
     echo $cek['total'];
   }
+
+  public function warning()
+  {
+    $this->load->model('Menu_model', 'DWarning');
+    $cek = $this->DWarning->DWarning();
+    echo $cek['warning'];
+  }
+
+  public function limit()
+  {
+    $this->load->model('Menu_model', 'DLimit');
+    $cek = $this->DLimit->DLimit();
+    echo $cek['DLimit'];
+  }
+
+  public function update()
+  {
+    $this->load->model('Menu_model', 'update');
+    $cek = $this->update->update();
+    echo $cek['Dupdate'];
+  }
+
+  public function time()
+  {
+    $this->load->model('Menu_model', 'time');
+    $cek = $this->update->update();
+    echo $cek['time'];
+  }
 }
