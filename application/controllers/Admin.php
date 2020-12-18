@@ -113,7 +113,7 @@ class Admin extends CI_Controller
   public function reset()
   {
     $data['title'] = 'Configuration';
-    $this->load->model('Menu_model', 'ambil');
+    $this->load->model('Data_model', 'ambil');
     $data['sisa'] = $this->ambil->ambilMax();
     $data['hari'] = $this->ambil->sisaHari();
     $data['harimin'] = $this->ambil->hariMin();

@@ -27,35 +27,35 @@ class Chart extends CI_Controller
 
   public function cek()
   {
-    $this->load->model('Menu_model', 'ambil');
+    $this->load->model('Data_model', 'ambil');
     $cek = $this->ambil->ambilMax();
     echo $cek['total'];
   }
 
   public function warning()
   {
-    $this->load->model('Menu_model', 'DWarning');
+    $this->load->model('Data_model', 'DWarning');
     $cek = $this->DWarning->DWarning();
     echo $cek['warning'];
   }
 
   public function limit()
   {
-    $this->load->model('Menu_model', 'DLimit');
+    $this->load->model('Data_model', 'DLimit');
     $cek = $this->DLimit->DLimit();
     echo $cek['Dlimit'];
   }
 
   public function update()
   {
-    $this->load->model('Menu_model', 'update');
+    $this->load->model('Data_model', 'update');
     $cek = $this->update->update();
     echo $cek['Dupdate'];
   }
 
   public function time()
   {
-    $this->load->model('Menu_model', 'ambil');
+    $this->load->model('Data_model', 'ambil');
     $hari = $this->ambil->sisaHari();
     $harimin = $this->ambil->hariMin();
     echo round((($harimin['time'] + 5184000) - $hari['time']) / 86400);
