@@ -98,9 +98,9 @@ class Admin extends CI_Controller
       $dupdate = $this->input->post('dupdate');
       // password sudah ok
       $ddata = array(
-        'Dlimit' => round($dlimit / 274 * 1000000),
-        'Dupdate' => round($dupdate / 274 * 1000),
-        'warning' => round($warning / 274 * 1000000)
+        'Dlimit' => round($dlimit / 310 * 1000000),
+        'Dupdate' => round($dupdate / 310 * 1000),
+        'warning' => round($warning / 310 * 1000000)
       );
       $this->db->where('id', 1);
       $this->db->update('data', $ddata);

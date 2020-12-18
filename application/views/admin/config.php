@@ -12,7 +12,7 @@
           <input type="text" readonly class="form-control-plaintext" id="warning_label" value="Warning Point">
         </div>
         <div class="form-group mx-sm-1 mb-2">
-          <input type="text" class="form-control" id="warning" name="warning" value="<?= round($ddata['warning'] * 0.274 / 1000); ?>">
+          <input type="text" class="form-control" id="warning" name="warning" value="<?= round($ddata['warning'] * 0.31 / 1000); ?>">
           <?= form_error('warning', '<small class="text-danger pl-3">', '</small>'); ?>
         </div>
         <div class="form-group mx-sm-1 mb-2">
@@ -25,7 +25,7 @@
           <input type="text" readonly class="form-control-plaintext" id="limit_label" value="Limit Point">
         </div>
         <div class="form-group mx-sm-1 mb-2">
-          <input type="text" class="form-control" id="dlimit" name="dlimit" value="<?= round($ddata['Dlimit'] * 0.274 / 1000); ?>">
+          <input type="text" class="form-control" id="dlimit" name="dlimit" value="<?= round($ddata['Dlimit'] * 0.31 / 1000); ?>">
           <?= form_error('dlimit', '<small class="text-danger pl-3">', '</small>'); ?>
         </div>
         <div class="form-group mx-sm-1 mb-2">
@@ -38,7 +38,7 @@
           <input type="text" readonly class="form-control-plaintext" id="update_label" value="Update Frequency Per">
         </div>
         <div class="form-group mx-sm-1 mb-2">
-          <input type="text" class="form-control" id="dupdate" name="dupdate" value="<?= round($ddata['Dupdate'] * 0.274); ?>">
+          <input type="text" class="form-control" id="dupdate" name="dupdate" value="<?= round($ddata['Dupdate'] * 0.31); ?>">
           <?= form_error('dupdate', '<small class="text-danger pl-3">', '</small>'); ?>
         </div>
         <div class="form-group mx-sm-1 mb-2">

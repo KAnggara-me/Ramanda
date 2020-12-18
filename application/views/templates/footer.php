@@ -78,7 +78,7 @@
             borderWidth: 2,
             data: [
               <?php foreach ($obs as $t) : ?>
-                <?= '"' . round($t['data'] / 3650, 1) . '",'; ?>
+                <?= '"' . round($t['data'] * (31 / 100000), 1) . '",'; ?>
               <?php endforeach; ?>
             ],
           },
@@ -98,7 +98,7 @@
             borderWidth: 1,
             data: [
               <?php foreach ($obs as $t) : ?>
-                <?= '"' . round($t['total'] / 3650, 1) . '",'; ?>
+                <?= '"' . round($t['total'] * (31 / 100000), 1) . '",'; ?>
               <?php endforeach; ?>
             ],
           },
