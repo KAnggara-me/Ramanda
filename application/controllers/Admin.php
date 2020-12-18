@@ -13,6 +13,7 @@ class Admin extends CI_Controller
   {
     $data['title'] = 'Dashboard';
     $data['obs'] = $this->db->get('counter')->result_array();
+    $data['ban'] = $this->db->get_where('data', ['id' => '1'])->row_array();
     $data['tobs'] = $this->db->order_by('id', 'DESC')->get('counter')->result_array();
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
@@ -82,6 +83,8 @@ class Admin extends CI_Controller
   {
     $data['title'] = 'Configuration';
     $data['ddata'] = $this->db->get_where('data', ['id' => '1'])->row_array();
+    $data['ban'] = $this->db->get_where('ban', ['id' => '1'])->row_array();
+    $ban = $this->db->get_where('data', ['id' => '1'])->row_array();
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
     $this->form_validation->set_rules('warning', 'Warning', 'required|trim');
@@ -96,11 +99,11 @@ class Admin extends CI_Controller
       $warning = $this->input->post('warning');
       $dlimit = $this->input->post('dlimit');
       $dupdate = $this->input->post('dupdate');
-      // password sudah ok
+
       $ddata = array(
-        'Dlimit' => round($dlimit / 310 * 1000000),
-        'Dupdate' => round($dupdate / 310 * 1000),
-        'warning' => round($warning / 310 * 1000000)
+        'Dlimit' => $dlimit * $ban['counter'],
+        'Dupdate' => round(($dupdate * $ban['counter']) / 1000), //Konversi Ke Meter [/1000]
+        'warning' => $warning * $ban['counter']
       );
       $this->db->where('id', 1);
       $this->db->update('data', $ddata);
@@ -108,6 +111,33 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Config Updated!</div>');
       redirect('admin/config');
     }
+  }
+
+  public function tire()
+  {
+    $tinggi = $this->input->post('tinggi');
+    $velg = $this->input->post('velg');
+    $lebar = $this->input->post('lebar');
+    $spoke = $this->input->post('spoke');
+
+    $ddata = array(
+      'tinggi' => $tinggi,
+      'lebar' => $lebar,
+      'velg' => $velg,
+      'spoke' => $spoke
+    );
+
+    $diameter = ($tinggi * 0.2) + ($velg * 2.54);
+    $keliling = round($diameter * 3.14);
+    $counter = round(100000 / ($keliling / $spoke));
+    $dcounter = array(
+      'counter' => $counter
+    );
+    $this->db->where('id', 1);
+    $this->db->update('ban', $ddata);
+    $this->db->update('data', $dcounter);
+    $this->session->set_flashdata('message1', '<div class="alert alert-warning" role="alert">Ukuran Ban Telah Disimpan!</div>');
+    redirect('admin/config');
   }
 
   public function reset()
