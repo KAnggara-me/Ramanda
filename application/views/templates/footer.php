@@ -53,29 +53,6 @@
   <script src="<?= base_url('assets/'); ?>vendor/chart.js/Chart.min.js"></script>
   <!-- Chart Script -->
   <script>
-    function number_format(number, decimals, dec_point, thousands_sep) {
-      number = (number + '').replace(',', '').replace(' ', '');
-      var n = !isFinite(+number) ? 0 : +number,
-        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-        s = '',
-        toFixedFix = function(n, prec) {
-          var k = Math.pow(10, prec);
-          return '' + Math.round(n * k) / k;
-        };
-      // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-      s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-      if (s[0].length > 3) {
-        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-      }
-      if ((s[1] || '').length < prec) {
-        s[1] = s[1] || '';
-        s[1] += new Array(prec - s[1].length + 1).join('0');
-      }
-      return s.join(dec);
-    }
-
     var ctx = document.getElementById("myAreaChart");
     var myChart = new Chart(ctx, {
       type: 'line',
@@ -101,7 +78,7 @@
             borderWidth: 2,
             data: [
               <?php foreach ($obs as $t) : ?>
-                <?= '"' . $t['data'] / 3650 . '",'; ?>
+                <?= '"' . round($t['data'] / 3650, 1) . '",'; ?>
               <?php endforeach; ?>
             ],
           },
@@ -121,7 +98,7 @@
             borderWidth: 1,
             data: [
               <?php foreach ($obs as $t) : ?>
-                <?= '"' . $t['total'] / 3650 . '",'; ?>
+                <?= '"' . round($t['total'] / 3650, 1) . '",'; ?>
               <?php endforeach; ?>
             ],
           },
@@ -146,28 +123,16 @@
               color: "rgb(234, 236, 244)",
               zeroLineColor: "rgb(234, 236, 244)",
               drawBorder: true,
-              // borderDash: [2],
-              // zeroLineBorderDash: [2]
             },
-            // ticks: {
-            //   maxTicksLimit: 10
-            // }
           }],
           yAxes: [{
             ticks: {
-              // maxTicksLimit: 5,
               padding: 10,
-              // Include a dollar sign in the ticks
-              // callback: function(value, index, values) {
-              //   return '' + number_format(value);
-              // }
             },
             gridLines: {
               color: "rgb(234, 236, 244)",
               zeroLineColor: "rgb(234, 236, 244)",
-              drawBorder: true,
-              // borderDash: [2],
-              // zeroLineBorderDash: [2]
+              drawBorder: true
             }
           }],
         },
@@ -191,7 +156,7 @@
           callbacks: {
             label: function(tooltipItem, chart) {
               var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-              return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + ' KM';
+              return datasetLabel + ': ' + tooltipItem.yLabel + ' KM';
             }
           }
         }
