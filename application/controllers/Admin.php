@@ -16,12 +16,37 @@ class Admin extends CI_Controller
     $data['ban'] = $this->db->get_where('data', ['id' => '1'])->row_array();
     $data['tobs'] = $this->db->order_by('id', 'DESC')->get('counter')->result_array();
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $this->load->model('Data_model', 'ambil');
 
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
     $this->load->view('admin/index', $data);
     $this->load->view('templates/footer', $data);
+
+    $hari = $this->ambil->sisaHari();
+    $harimin = $this->ambil->hariMin();
+    $jarak = $this->ambil->ambilMax();
+
+    $sisahari = (round((($harimin["time"] + 5184000) - $hari["time"]) / 86400));
+    $total = round($jarak["total"] * (31 / 100000), 1);
+
+
+    if ((round((($harimin["time"] + 5184000) - $hari["time"]) / 86400)) < 2) {
+      $this->session->set_flashdata('message3', '<div class="alert alert-danger" role="alert">' . 'Penggunaan Oli Telah Mencapai ' . $sisahari . ' Hari </div>');
+    } elseif ((round((($harimin["time"] + 5184000) - $hari["time"]) / 86400)) < 6) {
+      $this->session->set_flashdata('message3', '<div class="alert alert-warning" role="alert">' . 'Penggunaan Oli Tersisa ' . $sisahari . ' Hari </div>');
+    } elseif ((round((($harimin["time"] + 5184000) - $hari["time"]) / 86400)) < 11) {
+      $this->session->set_flashdata('message3', '<div class="alert alert-success" role="alert">' . 'Penggunaan Oli Tersisa ' . $sisahari . ' Hari </div>');
+    }
+
+    if ((round($jarak["total"] * (31 / 100000))) >= 2050) {
+      $this->session->set_flashdata('message3', '<div class="alert alert-danger" role="alert">' . 'Penggunaan Jarak Telah Mencapai ' . $total . ' KM </div>');
+    } elseif ((round($jarak["total"] * (31 / 100000))) >= 2000) {
+      $this->session->set_flashdata('message3', '<div class="alert alert-warning" role="alert">' . 'Penggunaan Jarak Telah Mencapai ' . $total . ' KM </div>');
+    } elseif ((round($jarak["total"] * (31 / 100000))) == 2000) {
+      $this->session->set_flashdata('message3', '');
+    }
   }
 
 

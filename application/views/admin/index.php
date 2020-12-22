@@ -3,6 +3,7 @@
   <!-- Content Row -->
   <div class="row">
     <div class="col-xl-12">
+      <?= $this->session->flashdata('message3'); ?>
       <!-- Area Chart -->
       <div class="card shadow mb-4">
         <div class="card-header py-3">
